@@ -1809,7 +1809,7 @@ window.location.href=`/channel/${allUsersArray.filter(obj=>obj.EventsCreated.inc
 
          {leaderboardArray.map((x,index)=>{
 
-           if(index<=5) return (
+           if(index<=4) return (
 
             <div style={{display:'flex',alignItems:'center',justifyContent:'center',gap:'25px',border:'1px solid white',width:'100%'}}>
 
@@ -1834,6 +1834,30 @@ window.location.href=`/channel/${allUsersArray.filter(obj=>obj.EventsCreated.inc
            )
 
          })}
+
+      <div style={{display:'flex',alignItems:'center',justifyContent:'center',gap:'25px',border:'1px solid yellow',width:'100%',backgroundColor:'grey'}}>
+
+      <div style={{display:'flex',alignItems:'center',justifyContent:'center',gap:'3px'}}>
+
+      <div>{leaderboardArray.length!=0 && leaderboardArray.findIndex(obj => obj.Email === localStorage.getItem('email'))+1
+      }.</div>
+      <img style={{width:'2em',height:'2em',borderRadius:'50%',objectFit: 'cover'}} src={leaderboardArray.length!=0 && leaderboardArray.filter(x=>x.Email==localStorage.getItem('email'))[0].ProfileImage}></img>
+      <div style={{ width:'3em'}}>You</div>
+
+      </div>
+
+      <div style={{display:'flex',alignItems:'center',justifyContent:'center',gap:'3px' }}>
+
+        
+      <img style={{width:'2em',height:'2em',borderRadius:'50%',objectFit: 'cover'}} src={coinImg}></img>
+      <div style={{ width:'3em'}}>{leaderboardArray.length!=0 && leaderboardArray.filter(x=>x.Email==localStorage.getItem('email'))[0].Coins}</div>
+
+
+      </div>
+
+      </div>
+
+        
          
 
             </div>

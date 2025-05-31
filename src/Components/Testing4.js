@@ -102,35 +102,23 @@ function Testing4() {
     }
 
 
-    const addRandomDateTimetoEvents=async()=>{
-
-        const data = await getDocs(collection(db,"events"));
-
-         
-                                           
-        let eventsTemp=await data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-
-        
-
-        for(let i=0;i<eventsTemp.length;i++)
-        {
-
-            const randomTime = dayjs(Date.now() - Math.random() * 15 * 24 * 60 * 60 * 1000).format("YYYY-MM-DD HH:mm:ss")
-
-            const userDoc = doc(db, "events",eventsTemp[i].id);
-               
-                           
-            const newFields = {Timestamp:randomTime};
-    
-            await updateDoc(userDoc, newFields);
-
-        }
-
-
-        
-       
-
-   }
+    const addRandomDateTimetoEvents = async () => {
+      const data = await getDocs(collection(db, "events"));
+  
+      let eventsTemp = await data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+  
+      for (let i = 0; i < eventsTemp.length; i++) {
+          // Random offset within 4 hours (0 to 4 hours in ms)
+          const randomOffset = Math.random() * 4 * 60 * 60 * 1000; // 4 hours in ms
+          const randomTime = dayjs(Date.now() - randomOffset).format("YYYY-MM-DD HH:mm:ss");
+  
+          const userDoc = doc(db, "events", eventsTemp[i].id);
+          const newFields = { Timestamp: randomTime };
+  
+          await updateDoc(userDoc, newFields);
+      }
+  };
+  
 
    const addCoinstoEvents=async()=>{
 
