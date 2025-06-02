@@ -324,7 +324,31 @@ function Home2() {
              
               <List>
               
-                {['DeFi', 'GameFi',"SocialFi", 'AI Agents', 'Layer 1',"Layer 2","Layer 3","LLM","Other Technologies","Non Tech"].map((text, index) => (
+                {[
+   
+   "Stand-Up",
+   "Sketch",
+   "Improv",
+   "Satire",
+   "Sitcom",
+   "Slapstick",
+   "Roast",
+   "Desi Comedy",
+   "Offbeat",
+   "Panel Show",
+   "Pop",
+   "Rock",
+   "Hip-Hop",
+   "Classical",
+   "Jazz",
+   "EDM",
+   "Folk",
+   "Reggae",
+   "Country",
+   "Bollywood",
+   "Blues",
+   "Metal"
+ ].map((text, index) => (
                   <ListItem key={text} disablePadding onClick={()=>{
                     setCategory(text)
                     toggleDrawer(false)
@@ -821,13 +845,12 @@ function Home2() {
    if (x.Address.toLowerCase().replace(/[^\w\s]/g, '').includes(input) && x.Type!="online")
   return(
 
-    <Card sx={{ maxWidth: 400,minWidth:300 ,maxHeight:600  }} style={{ position:'relative',background: 'transparent', boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.5)', backdropFilter: 'blur(17.5px)', WebkitBackdropFilter: 'blur(17.5px)', borderRadius: '20px' , border: '0.5px solid rgba(255, 255, 255,0.2)',position:'relative',borderRadius:'20px'}}>
-    <CardActionArea>
-      <br></br>
-      <img style={{width:'27.5em' ,height:'18em'}} src={x.Image} onClick={()=>{
-        window.location.href=`/event/${x.id}`
-      }}></img>
-
+    <Card sx={{ maxWidth: 350,minWidth:300 ,maxHeight:1000  }} style={{ position:'relative',background: 'transparent', boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.5)', backdropFilter: 'blur(17.5px)', WebkitBackdropFilter: 'blur(17.5px)', borderRadius: '20px' , border: '0.5px solid rgba(255, 255, 255,0.2)',position:'relative',borderRadius:'20px'}}>
+      <CardActionArea>
+        
+        <img style={{width:'300px' ,height:'500px',objectFit:'cover', border: '1px solid rgba(255, 255, 255, 0.18)'}} src={x.Image} onClick={()=>{
+          window.location.href=`/event/${x.id}`
+        }}></img>
 {localStorage.getItem('email') && x.Creator==localStorage.getItem('email') && 
                       <button variant='contained' style={{backgroundColor:'#1876d0',border:'none',position:'absolute',top:'20px',left:'85%',borderRadius:'50%',height:'3em',width:'3em'}} onClick={()=>{
                       window.location.href=`/manage/${x.id}`
@@ -974,11 +997,10 @@ function Home2() {
 
 {trendingEvents.length!=0 && buttonHight==2 &&  trendingEvents.map((x)=>{
    if((isOnline && x.Type=='online') || !isOnline && ((x.Type && x.Type!="online" )|| !x.Type)) return(
-
-    <Card sx={{ maxWidth: 400,minWidth:300 ,maxHeight:600  }} style={{ position:'relative',background: 'transparent', boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.5)', backdropFilter: 'blur(17.5px)', WebkitBackdropFilter: 'blur(17.5px)', borderRadius: '20px' , border: '0.5px solid rgba(255, 255, 255,0.2)',position:'relative',borderRadius:'20px'}}>
+    <Card sx={{ maxWidth: 350,minWidth:300 ,maxHeight:1000  }} style={{ position:'relative',background: 'transparent', boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.5)', backdropFilter: 'blur(17.5px)', WebkitBackdropFilter: 'blur(17.5px)', borderRadius: '20px' , border: '0.5px solid rgba(255, 255, 255,0.2)',position:'relative',borderRadius:'20px'}}>
     <CardActionArea>
-      <br></br>
-      <img style={{width:'27.5em' ,height:'18em'}} src={x.Image} onClick={()=>{
+      
+      <img style={{width:'300px' ,height:'500px',objectFit:'cover', border: '1px solid rgba(255, 255, 255, 0.18)'}} src={x.Image} onClick={()=>{
         window.location.href=`/event/${x.id}`
       }}></img>
 
@@ -1128,10 +1150,10 @@ function Home2() {
     
     return(
 
-      <Card  sx={{ maxWidth: 400,minWidth:300 ,maxHeight:600  }} style={{ position:'relative',background: 'transparent', boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.5)', backdropFilter: 'blur(17.5px)', WebkitBackdropFilter: 'blur(17.5px)', borderRadius: '20px' , border: '0.5px solid rgba(255, 255, 255,0.2)',position:'relative',borderRadius:'20px'}}>
+      <Card sx={{ maxWidth: 350,minWidth:300 ,maxHeight:1000  }} style={{ position:'relative',background: 'transparent', boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.5)', backdropFilter: 'blur(17.5px)', WebkitBackdropFilter: 'blur(17.5px)', borderRadius: '20px' , border: '0.5px solid rgba(255, 255, 255,0.2)',position:'relative',borderRadius:'20px'}}>
       <CardActionArea>
-        <br></br>
-        <img style={{width:'27.5em' ,height:'18em'}} src={x.Image} onClick={()=>{
+        
+        <img style={{width:'300px' ,height:'500px',objectFit:'cover', border: '1px solid rgba(255, 255, 255, 0.18)'}} src={x.Image} onClick={()=>{
           window.location.href=`/event/${x.id}`
         }}></img>
 
@@ -1283,10 +1305,10 @@ function Home2() {
 {allEvents.length!=0 && allEvents.map((x)=>{
   if((isOnline && x.Type=='online') || !isOnline && ((x.Type && x.Type!="online" )|| !x.Type))return(
 
-    <Card sx={{ maxWidth: 400,minWidth:300 ,maxHeight:600  }} style={{ position:'relative',background: 'transparent', boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.5)', backdropFilter: 'blur(17.5px)', WebkitBackdropFilter: 'blur(17.5px)', borderRadius: '20px' , border: '0.5px solid rgba(255, 255, 255,0.2)',position:'relative',borderRadius:'20px'}}>
+    <Card sx={{ maxWidth: 350,minWidth:300 ,maxHeight:1000  }} style={{ position:'relative',background: 'transparent', boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.5)', backdropFilter: 'blur(17.5px)', WebkitBackdropFilter: 'blur(17.5px)', borderRadius: '20px' , border: '0.5px solid rgba(255, 255, 255,0.2)',position:'relative',borderRadius:'20px'}}>
       <CardActionArea>
         
-        <img style={{width:'27.5em' ,height:'18em',objectFit:'cover', border: '1px solid rgba(255, 255, 255, 0.18)'}} src={x.Image} onClick={()=>{
+        <img style={{width:'300px' ,height:'500px',objectFit:'cover', border: '1px solid rgba(255, 255, 255, 0.18)'}} src={x.Image} onClick={()=>{
           window.location.href=`/event/${x.id}`
         }}></img>
 
@@ -1438,10 +1460,10 @@ function Home2() {
 {createdEvents.length!=0 && createdEvents.map((x)=>{
   return(
 
-    <Card sx={{ maxWidth: 400,minWidth:300 ,maxHeight:600  }} style={{ position:'relative',background: 'transparent', boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.5)', backdropFilter: 'blur(17.5px)', WebkitBackdropFilter: 'blur(17.5px)', borderRadius: '20px' , border: '0.5px solid rgba(255, 255, 255,0.2)',position:'relative',borderRadius:'20px'}}>
+    <Card sx={{ maxWidth: 350,minWidth:300 ,maxHeight:1000  }} style={{ position:'relative',background: 'transparent', boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.5)', backdropFilter: 'blur(17.5px)', WebkitBackdropFilter: 'blur(17.5px)', borderRadius: '20px' , border: '0.5px solid rgba(255, 255, 255,0.2)',position:'relative',borderRadius:'20px'}}>
       <CardActionArea>
-        <br></br>
-        <img style={{width:'27.5em' ,height:'18em'}} src={x.Image} onClick={()=>{
+        
+        <img style={{width:'300px' ,height:'500px',objectFit:'cover', border: '1px solid rgba(255, 255, 255, 0.18)'}} src={x.Image} onClick={()=>{
           window.location.href=`/event/${x.id}`
         }}></img>
 
@@ -1591,10 +1613,10 @@ function Home2() {
   return(
     <div style={{border:'2px solid black',color:'white'}}>
       
-      <Card sx={{ maxWidth: 400,minWidth:300 ,maxHeight:600  }} style={{ position:'relative',background: 'transparent', boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.5)', backdropFilter: 'blur(17.5px)', WebkitBackdropFilter: 'blur(17.5px)', borderRadius: '20px' , border: '0.5px solid rgba(255, 255, 255,0.2)',position:'relative',borderRadius:'20px'}}>
+      <Card sx={{ maxWidth: 350,minWidth:300 ,maxHeight:1000  }} style={{ position:'relative',background: 'transparent', boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.5)', backdropFilter: 'blur(17.5px)', WebkitBackdropFilter: 'blur(17.5px)', borderRadius: '20px' , border: '0.5px solid rgba(255, 255, 255,0.2)',position:'relative',borderRadius:'20px'}}>
       <CardActionArea>
-        <br></br>
-        <img style={{width:'20em' ,height:'20em'}} src={x.Image} onClick={()=>{
+        
+        <img style={{width:'300px' ,height:'500px',objectFit:'cover', border: '1px solid rgba(255, 255, 255, 0.18)'}} src={x.Image} onClick={()=>{
           window.location.href=`/event/${x.id}`
         }}></img>
        

@@ -86,7 +86,7 @@ function Rewards() {
 
                     <div style={{ position:'relative',background: 'transparent', boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.5)', backdropFilter: 'blur(17.5px)', WebkitBackdropFilter: 'blur(17.5px)', borderRadius: '20px' , border: '0.5px solid rgba(255, 255, 255,0.2)',position:'relative',borderRadius:'20px'}}>
 
-                    <img style={{width:'20em' ,height:'20em',objectFit:'cover'}} src={x.Image}></img>
+                    <img style={{width:'300px' ,height:'500px',objectFit:'cover'}} src={x.Image}></img>
                         <br></br> <br></br> 
                         
                         <div style={{color:'white',display:'flex',alignItems:'center',justifyContent:'center',gap:'10px'}}> <img src={coinImg} style={{width: '4em', 

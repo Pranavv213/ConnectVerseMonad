@@ -586,12 +586,12 @@ localStorage.setItem('getChat',JSON.stringify(users[0]))
 
         return(
 
-            <Card sx={{ maxWidth: 345,minWidth:300 ,maxHeight:500  }} style={{ background: 'rgba(255, 255, 255, 0.1)', boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.37)', backdropFilter: 'blur(17.5px)', WebkitBackdropFilter: 'blur(17.5px)', borderRadius: '10px', border: '1px solid rgba(255, 255, 255, 0.18)' }}>
-            <CardActionArea>
-              <br></br>
-              <img style={{width:'20em' ,height:'20em'}} src={x.Image} onClick={()=>{
-                window.location.href=`/event/${x.id}`
-              }}></img>
+             <Card sx={{ maxWidth: 350,minWidth:300 ,maxHeight:1000  }} style={{ position:'relative',background: 'transparent', boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.5)', backdropFilter: 'blur(17.5px)', WebkitBackdropFilter: 'blur(17.5px)', borderRadius: '20px' , border: '0.5px solid rgba(255, 255, 255,0.2)',position:'relative',borderRadius:'20px'}}>
+                  <CardActionArea>
+                    
+                    <img style={{width:'300px' ,height:'500px',objectFit:'cover', border: '1px solid rgba(255, 255, 255, 0.18)'}} src={x.Image} onClick={()=>{
+                      window.location.href=`/event/${x.id}`
+                    }}></img>
              
               <CardContent>
       

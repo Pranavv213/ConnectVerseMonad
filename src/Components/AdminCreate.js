@@ -79,6 +79,27 @@ const usersCollectionRef1 = collection(db, "user");
 function AdminCreate() {
 
 
+  const categoriesMix = [
+    "Stand-Up",
+ 
+    "Roast",
+    "Desi Comedy",
+    "Offbeat",
+    "Panel Show",
+    "Pop",
+    "Rock",
+    "Hip-Hop",
+    "Classical",
+    "Jazz",
+    "EDM",
+    "Folk",
+    "Reggae",
+    "Country",
+    "Bollywood",
+    "Blues",
+    "Metal",
+  ];
+
   const [query, setQuery] = useState("");
     const [suggestions, setSuggestions] = useState([]);
     const [mapUrl, setMapUrl] = useState("");
@@ -1050,165 +1071,57 @@ isOnline && <div class="location"  style={{ cursor:'pointer',background: "rgba(2
           }} placeholder='Layer1,Defi'>{category}</p>
           
           <br></br> <br></br>
-          <Button variant="outlined" style={{borderRadius:'5px', margin: '5px'}} onClick={()=>{
-  if(!category.toLowerCase().includes("Defi".toLowerCase())) {
-    setCategory(category.length === 0 ? "Defi" : category + ",Defi");
-    categoryColor[0]="#1876d1"
-    setCategoryColor(categoryColor)
-  } else {
-    categoryColor[0]="white"
-    setCategoryColor(categoryColor)
-    if(category.startsWith("Defi,")) {
-      setCategory(category.slice("Defi,".length));
-    } else if(category === "Defi") {
-      setCategory("");
-    } else if(category.startsWith("Defi")) {
-      setCategory(category.slice("Defi".length));
-    } else {
-      setCategory(category.slice(0,category.indexOf(",Defi"))+category.slice(category.indexOf(",Defi")+5));
-    }
-  }
-}}>Defi</Button>
+          {categoriesMix.map((cat, idx) => (
+  <Button
+    key={cat}
+    variant="outlined"
+    style={{
+      borderRadius: "5px",
+      margin: "5px",
+      borderColor: categoryColor[idx],
+      color: "white", // always white text
+    }}
+    onClick={() => {
+      const lowerCat = cat.toLowerCase();
+      const lowerCategory = category.toLowerCase();
+      let newCategory = category;
+      let newColors = [...categoryColor];
 
-<Button variant="outlined" style={{borderRadius:'5px', margin: '5px'}} onClick={()=>{
-  if(!category.toLowerCase().includes("GameFi".toLowerCase())) {
-    setCategory(category.length === 0 ? "GameFi" : category + ",GameFi");
-    categoryColor[1]="#1876d1"
-    setCategoryColor(categoryColor)
-  } else {
-    categoryColor[1]="white"
-    setCategoryColor(categoryColor)
-    if(category.startsWith("GameFi,")) {
-      setCategory(category.slice("GameFi,".length));
-    } else if(category === "GameFi") {
-      setCategory("");
-    } else if(category.startsWith("GameFi")) {
-      setCategory(category.slice("GameFi".length));
-    } else {
-      setCategory(category.slice(0,category.indexOf(",GameFi"))+category.slice(category.indexOf(",GameFi")+7));
-    }
-  }
-}}>GameFi</Button>
+      // Count currently selected categories
+      const selectedCount = category.split(",").filter((c) => c.trim() !== "").length;
 
-<Button variant="outlined"style={{borderRadius:'5px', margin: '5px'}} onClick={()=>{
-  if(!category.toLowerCase().includes("AI Agents".toLowerCase())) {
-    setCategory(category.length === 0 ? "AI Agents" : category + ",AI Agents");
-    categoryColor[2]="#1876d1"
-    setCategoryColor(categoryColor)
-  } else {
-    categoryColor[2]="white"
-    setCategoryColor(categoryColor)
-    if(category.startsWith("AI Agents,")) {
-      setCategory(category.slice("AI Agents,".length));
-    } else if(category === "AI Agents") {
-      setCategory("");
-    } else if(category.startsWith("AI Agents")) {
-      setCategory(category.slice("AI Agents".length));
-    } else {
-      setCategory(category.slice(0,category.indexOf(",AI Agents"))+category.slice(category.indexOf(",AI Agents")+11));
-    }
-  }
-}}>AI Agents</Button>
+      if (!lowerCategory.includes(lowerCat)) {
+        // Only allow adding if less than 4 are selected
+        if (selectedCount < 4) {
+          newCategory = category.length === 0 ? cat : category + "," + cat;
+          newColors[idx] = "#1876d1"; // blue color when selected
+        } else {
+          // Optionally: show a message or feedback that the limit has been reached
+          alert("You can select up to 4 categories only.");
+          return;
+        }
+      } else {
+        newColors[idx] = "white"; // reset to white when deselected
+        if (category.startsWith(cat + ",")) {
+          newCategory = category.slice(cat.length + 1);
+        } else if (category === cat) {
+          newCategory = "";
+        } else if (category.includes("," + cat)) {
+          newCategory =
+            category.slice(0, category.indexOf("," + cat)) +
+            category.slice(category.indexOf("," + cat) + cat.length + 1);
+        }
+      }
 
-<Button variant="outlined" style={{borderRadius:'5px', margin: '5px'}} onClick={()=>{
-  if(!category.toLowerCase().includes("Layer 1".toLowerCase())) {
-    setCategory(category.length === 0 ? "Layer 1" : category + ",Layer 1");
-    categoryColor[3]="#1876d1"
-    setCategoryColor(categoryColor)
-  } else {
-    categoryColor[3]="white"
-    setCategoryColor(categoryColor)
-    if(category.startsWith("Layer 1,")) {
-      setCategory(category.slice("Layer 1,".length));
-    } else if(category === "Layer 1") {
-      setCategory("");
-    } else if(category.startsWith("Layer 1")) {
-      setCategory(category.slice("Layer 1".length));
-    } else {
-      setCategory(category.slice(0,category.indexOf(",Layer 1"))+category.slice(category.indexOf(",Layer 1")+8));
-    }
-  }
-}}>Layer 1</Button>
+      setCategory(newCategory);
+      setCategoryColor(newColors);
+    }}
+  >
+    {cat}
+  </Button>
+))}
 
-<Button variant="outlined"style={{borderRadius:'5px', margin: '5px'}} onClick={()=>{
-  if(!category.toLowerCase().includes("Layer 2".toLowerCase())) {
-    setCategory(category.length === 0 ? "Layer 2" : category + ",Layer 2");
-  } else {
-    if(category.startsWith("Layer 2,")) {
-      setCategory(category.slice("Layer 2,".length));
-    } else if(category === "Layer 2") {
-      setCategory("");
-    } else if(category.startsWith("Layer 2")) {
-      setCategory(category.slice("Layer 2".length));
-    } else {
-      setCategory(category.slice(0,category.indexOf(",Layer 2"))+category.slice(category.indexOf(",Layer 2")+8));
-    }
-  }
-}}>Layer 2</Button>
-
-<Button variant="outlined" style={{borderRadius:'5px', margin: '5px'}} onClick={()=>{
-  if(!category.toLowerCase().includes("Layer 3".toLowerCase())) {
-    setCategory(category.length === 0 ? "Layer 3" : category + ",Layer 3");
-  } else {
-    if(category.startsWith("Layer 3,")) {
-      setCategory(category.slice("Layer 3,".length));
-    } else if(category === "Layer 3") {
-      setCategory("");
-    } else if(category.startsWith("Layer 3")) {
-      setCategory(category.slice("Layer 3".length));
-    } else {
-      setCategory(category.slice(0,category.indexOf(",Layer 3"))+category.slice(category.indexOf(",Layer 3")+8));
-    }
-  }
-}}>Layer 3</Button>
-
-<Button variant="outlined" style={{borderRadius:'5px', margin: '5px'}} onClick={()=>{
-  if(!category.toLowerCase().includes("LLM".toLowerCase())) {
-    setCategory(category.length === 0 ? "LLM" : category + ",LLM");
-  } else {
-    if(category.startsWith("LLM,")) {
-      setCategory(category.slice("LLM,".length));
-    } else if(category === "LLM") {
-      setCategory("");
-    } else if(category.startsWith("LLM")) {
-      setCategory(category.slice("LLM".length));
-    } else {
-      setCategory(category.slice(0,category.indexOf(",LLM"))+category.slice(category.indexOf(",LLM")+4));
-    }
-  }
-}}>LLM</Button>
-
-<Button variant="outlined" style={{borderRadius:'5px', margin: '5px'}} onClick={()=>{
-  if(!category.toLowerCase().includes("Other Technologies".toLowerCase())) {
-    setCategory(category.length === 0 ? "Other Technologies" : category + ",Other Technologies");
-  } else {
-    if(category.startsWith("Other Technologies,")) {
-      setCategory(category.slice("Other Technologies,".length));
-    } else if(category === "Other Technologies") {
-      setCategory("");
-    } else if(category.startsWith("Other Technologies")) {
-      setCategory(category.slice("Other Technologies".length));
-    } else {
-      setCategory(category.slice(0,category.indexOf(",Other Technologies"))+category.slice(category.indexOf(",Other Technologies")+19));
-    }
-  }
-}}>Other Technologies</Button>
-
-<Button variant="outlined" style={{borderRadius:'5px', margin: '5px'}} onClick={()=>{
-  if(!category.toLowerCase().includes("Non Tech".toLowerCase())) {
-    setCategory(category.length === 0 ? "Non Tech" : category + ",Non Tech");
-  } else {
-    if(category.startsWith("Non Tech,")) {
-      setCategory(category.slice("Non Tech,".length));
-    } else if(category === "Non Tech") {
-      setCategory("");
-    } else if(category.startsWith("Non Tech")) {
-      setCategory(category.slice("Non Tech".length));
-    } else {
-      setCategory(category.slice(0,category.indexOf(",Non Tech"))+category.slice(category.indexOf(",Non Tech")+9));
-    }
-  }
-}}>Non Tech</Button>
+     
 
           
           </center>
